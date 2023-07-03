@@ -54,11 +54,13 @@ public class BootSpringBootApplication {
 사용문법: [Go google](Google)
 적용예: [Google](https://google.com)
 
-
+MIN_Obsidian/image/001.jpg
 * test
 * **test 
 
 ![Alt text](001.jpg "Optional title")
+MIN_Obsidian/image/001.jpg
+
 
 
 ![Alt text](/image/001.png "RubberDuck")
@@ -90,3 +92,7 @@ ___이게 아님___
 - [ ] 할일
 - [t] 할일
 ## 보여라
+![alt text](https://github.com/min2zeus/obsidian/blob/77dc9ccb7b03a6092f68e575c1e8711733)
+
+https://github.com/min2zeus/obsidian/blob/77dc9ccb7b03a6092f68e575c1e87117334096a6/MIN_Obsidian/image/001.png
+![alt text](https://www.markdownguide.org/assets/images/tux.png)
