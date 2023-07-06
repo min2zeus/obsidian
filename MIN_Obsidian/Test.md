@@ -1,7 +1,18 @@
+---
+color: "#fa8231"
+sticker: emoji//1f9e1
+---
 -----------
 
-# 제목1
-## 제목2
+테스트 [재료::면], [재료::분말], [재료::스프]
+```dataview
+TABLE 재료
+where file.name = this.file.name
+```
+
+
+# 제<span style='color:#eb3b5a'>목</span>1
+## 제<mark style='background:#0fb9b1'>목2</mark>
 ### 제목3
 #### 제목4
 제목
@@ -9,7 +20,7 @@
 
 
 + 1단계
-	+ 2단계
+	+ 2[단계](https://wts.mocomsys.com)
 		+ **안녕하세요**
 		+ 
 > test 
@@ -24,7 +35,7 @@
 1. test
 	1. test
 	2. tste
-
+!![[Note Name]]
 
 
 This is a normal paragraph:
@@ -32,15 +43,18 @@ This is a normal paragraph:
    `` This is a code block.
     
 end code block.
-
-
+[[]]
+[[markdown-cheat-sheet]]
+[[Note Name]]
 test asdf
 	``testt
 
 test
-   test
+   t
 `` ttttest
- 
+
+
+😄
 
 ```java
 public class BootSpringBootApplication {
@@ -53,6 +67,7 @@ public class BootSpringBootApplication {
 
 사용문법: [Go google](Google)
 적용예: [Google](https://google.com)
+[[read me]]
 
 MIN_Obsidian/image/001.jpg
 * test
@@ -96,3 +111,61 @@ ___이게 아님___
 
 https://github.com/min2zeus/obsidian/blob/77dc9ccb7b03a6092f68e575c1e87117334096a6/MIN_Obsidian/image/001.png
 ![alt text](https://www.markdownguide.org/assets/images/tux.png)
+
+
+
+![image des](image/001.jpg)
+
+| Header | value | Description |
+| --: | :-- | :--: |
+| 정렬 | --: | 우측정렬 |
+| 정렬 | :-- | 좌측정렬 |
+| 정렬 | :--: | 가운데정렬 |
+
+
+# 🙏 Trello Clone Coding
+
+**Assistant**
+ - Trello Clone with React + Redux
+
+**Feachur**
+
+|Feachure|Description||
+|:--:|:--:|
+|Author|StudyTeam|
+|Node|14.17.3|
+|yarn|1.22.5|
+|referrence|[goddaehee.tistory.com](http://goddaehee.tistory.com/)
+|referrence|[샘플.com](http://샘플.com/)
+
+
+
+**Style**
+ - [material-ui] (https://mui.com/getting-started/usage/)
+
+
+
+옵시디언 장점
+
+
+```dataview
+TABLE wakeup as "기상", sleep as "취침", workout as "운동", gratitude as "감사", pills as "건강 약", reading as "독서" FROM "Planner/2021/01 Daily" WHERE date(today) - file.ctime <= dur(30 days) SORT file.name desc
+```
+[key1::value1]
+
+---
+재료 : 분말
+재료 : 면
+재료 : 스프
+
+---
+
+테스트 [재료::면], [재료::분말], [재료::스프]
+
+
+---
+
+```dataview
+TABLE time-played, length, rating FROM "games" SORT rating desc
+```
+

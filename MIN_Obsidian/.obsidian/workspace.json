@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "ef28c0ff04575611",
+        "id": "536579ce96ccbcb7",
         "type": "tabs",
         "children": [
           {
-            "id": "fff0706bc598411a",
+            "id": "4abd5a9887bc0491",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Test.md",
+                "file": "markdown-cheat-sheet.md",
                 "mode": "source",
                 "source": false
               }
@@ -64,8 +64,17 @@
               "type": "bookmarks",
               "state": {}
             }
+          },
+          {
+            "id": "feaf3458f03e0138",
+            "type": "leaf",
+            "state": {
+              "type": "mk-file-view",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -85,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Test.md",
+                "file": "markdown-cheat-sheet.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Test.md",
+                "file": "markdown-cheat-sheet.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Test.md"
+                "file": "markdown-cheat-sheet.md"
               }
             }
           }
@@ -143,26 +152,36 @@
       "canvas:새 캔버스 만들기": false,
       "daily-notes:오늘의 데일리 노트 열기": false,
       "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false
+      "command-palette:명령어 팔레트 열기": false,
+      "obsidian-textgenerator-plugin:Generate Text!": false,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "fff0706bc598411a",
+  "active": "4abd5a9887bc0491",
   "lastOpenFiles": [
-    "markdown-cheat-sheet.md",
     "Test.md",
+    "markdown-cheat-sheet.md",
+    "frontmatter.md",
+    "Note Name.md",
+    "read me.md",
+    "무제 파일 1.md",
+    "test111.md",
+    "Context/MIN_Obsidian.mdb",
+    "image/001.png",
+    "Context/spacesLastSync.log",
+    "Context",
+    "무제 파일.canvas",
     "().md",
     "test2.md",
     "test 1.md",
     "[.md",
     "image/001.jpg",
     "image/image001.jpg",
-    "image/001.png",
     "image",
     "path/to/img.jpg.md",
     "Google.md",
     "path/to",
     "path",
-    "무제 파일.canvas",
     "무제 폴더/무제 파일.md"
   ]
 }
