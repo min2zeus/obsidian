@@ -1,6 +1,6 @@
 ---
-color: "#fa8231"
-sticker: emoji//1f9e1
+color: ""
+sticker: emoji//1f916
 ---
 -----------
 
@@ -11,8 +11,15 @@ where file.name = this.file.name
 ```
 
 
+```dataview
+TABLE 재료, 재료1
+where file.name = this.file.name
+```
+
+
 # 제<span style='color:#eb3b5a'>목</span>1
-## 제<mark style='background:#0fb9b1'>목2</mark>
+## <span style='color:#8854d0'>제목2</span>
+
 ### 제목3
 #### 제목4
 제목
@@ -36,6 +43,11 @@ where file.name = this.file.name
 	1. test
 	2. tste
 !![[Note Name]]
+1. test
+2. test
+	1. tset
+	2. test
+	3. 
 
 
 This is a normal paragraph:

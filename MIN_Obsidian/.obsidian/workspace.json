@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "536579ce96ccbcb7",
+        "id": "6faff6374e99200a",
         "type": "tabs",
         "children": [
           {
-            "id": "4abd5a9887bc0491",
+            "id": "c8209ea53a73a570",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "markdown-cheat-sheet.md",
+                "file": "front.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "markdown-cheat-sheet.md",
+                "file": "front.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "markdown-cheat-sheet.md",
+                "file": "front.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "markdown-cheat-sheet.md"
+                "file": "front.md"
               }
             }
           }
@@ -157,13 +157,23 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "4abd5a9887bc0491",
+  "active": "c8209ea53a73a570",
   "lastOpenFiles": [
-    "Test.md",
-    "markdown-cheat-sheet.md",
+    "front.md",
     "frontmatter.md",
-    "Note Name.md",
+    "IB_part/MFT_memo.md",
+    "IB_part/MQ_memo.md",
+    "IB_part/IIB_memo.md",
+    "IB_part/MTE_memo.md",
+    "IB_part/ETC_memo(OS, vi, network).md",
+    "[[[[[[markdown-cheat-sheet.md",
+    "markdown-cheat-sheet.md",
+    "IB_part/IB_part.md",
+    "IB_part/IB파트.md",
+    "Test.md",
+    "IB_part",
     "read me.md",
+    "Note Name.md",
     "무제 파일 1.md",
     "test111.md",
     "Context/MIN_Obsidian.mdb",

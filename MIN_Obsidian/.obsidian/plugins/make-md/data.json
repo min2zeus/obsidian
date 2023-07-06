@@ -36,20 +36,39 @@
   "deleteFileOption": "trash",
   "expandedFolders": {
     "MIN_Obsidian": [
-      "image"
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB파트",
+      "IB_part",
+      "IB_part",
+      "IB_part",
+      "IB_part",
+      "IB_part",
+      "IB_part",
+      "IB_part"
     ]
   },
   "expandedSpaces": [
     "/",
     null,
     "MIN_Obsidian",
-    null,
-    "TEST SPACE"
+    null
   ],
   "openFolders": [],
   "fileIcons": [],
   "cachedSpaces": [
-    "TEST SPACE",
     "MIN_Obsidian"
   ],
   "menuTriggerChar": "/",
@@ -75,7 +94,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1688608989444,
+  "spacesAutoBackupLast": 1688630396969,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "alias",
