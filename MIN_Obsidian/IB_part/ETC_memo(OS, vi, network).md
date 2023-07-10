@@ -6,6 +6,7 @@ sticker: emoji//1f64a
 mkuser pgrp='primary group' home='home folder path' account
  예)
 mkuser pgrp='ssaweb' home='/ssaweb/andon' andon
+
 ### AIX 메모리 사용률
 http://mwguru.tistory.com/32
 http://cafe.naver.com/iamstrong/2473

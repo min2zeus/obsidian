@@ -11,11 +11,9 @@
             "id": "c8209ea53a73a570",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "make-folder-view",
               "state": {
-                "file": "front.md",
-                "mode": "source",
-                "source": false
+                "contextPath": "IB_part"
               }
             }
           }
@@ -94,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "front.md",
+                "file": "IB_part/IB_part.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +109,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "front.md",
+                "file": "IB_part/IB_part.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +132,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "front.md"
+                "file": "IB_part/IB_part.md"
               }
             }
           }
@@ -159,18 +157,19 @@
   },
   "active": "c8209ea53a73a570",
   "lastOpenFiles": [
+    "IB_part/IIB_memo.md",
+    "IB_part/MQ_memo.md",
     "front.md",
     "frontmatter.md",
-    "IB_part/MFT_memo.md",
-    "IB_part/MQ_memo.md",
-    "IB_part/IIB_memo.md",
-    "IB_part/MTE_memo.md",
+    "Test.md",
+    "IB_part/DB_memo.md",
     "IB_part/ETC_memo(OS, vi, network).md",
+    "IB_part/MTE_memo.md",
+    "IB_part/MFT_memo.md",
     "[[[[[[markdown-cheat-sheet.md",
     "markdown-cheat-sheet.md",
     "IB_part/IB_part.md",
     "IB_part/IB파트.md",
-    "Test.md",
     "IB_part",
     "read me.md",
     "Note Name.md",

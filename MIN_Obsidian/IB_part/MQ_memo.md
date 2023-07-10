@@ -8,8 +8,7 @@ sticker: emoji//1f431
 SVRCONN 채널과 같은 이름의 CLNTCONN 채널 생성
 CLNTCONN 채널의 conname 은 서버의 아이피와 포트
 그리고 qmname 넣어 줘야함
-[[markdown-cheat-sheet]]
-[[[[[[[[markdown-cheat-sheet]]]]]]]]
+
 
 디폴트인 /var/mqm/ 에 넣어주면 
 
