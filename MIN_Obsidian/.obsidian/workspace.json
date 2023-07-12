@@ -11,8 +11,12 @@
             "id": "aac6b432ce288d3e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Git/버전 관리.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -74,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 394.5
   },
   "right": {
     "id": "235a4c9d5ebc85ae",
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Git/버전 관리.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,6 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Git/버전 관리.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +133,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Git/버전 관리.md"
+              }
             }
           }
         ]
@@ -151,26 +159,30 @@
   },
   "active": "feaf3458f03e0138",
   "lastOpenFiles": [
+    "image/Pasted.md",
     "Git/버전 관리.md",
-    "ETC_TEST/ETC_TEST.md",
-    "ETC_TEST/markdown-cheat-sheet.md",
+    "Git/Pasted.md",
+    "image/image_20230711133559.png",
+    "Git/Pasted image 20230711133758.png",
+    "Git/Pasted image 20230711133559.png",
+    "Git/Pasted image 20230711165910.png",
+    "Git/Pasted image 20230711135444.png",
+    "Git/001.jpg.md",
+    "Git/Pasted image 20230711171515.png",
+    "Git/Pasted image 20230711170329.png",
+    "Git/Git.md",
+    "ETC_TEST/Test.md",
     "ETC_TEST/front.md",
+    "ETC_TEST/markdown-cheat-sheet.md",
+    "ETC_TEST/ETC_TEST.md",
     "무제 파일.md",
     "ETC_TEST",
     "markdown-cheat-sheet.md",
-    "ETC_TEST/Test.md",
     "ETC_TEST/frontmatter.md",
     "cheat_sheet.md",
-    "Git/Pasted image 20230711171515.png",
     "Git/Pasted image 20230711171329.png",
     "Git/Pasted image 20230711171313.png",
     "Git/Pasted image 20230711171159.png",
-    "Git/Pasted image 20230711170329.png",
-    "Git/Pasted image 20230711170313.png",
-    "Git/Pasted image 20230711165910.png",
-    "Git/Pasted image 20230711135444.png",
-    "Git/Pasted image 20230711133758.png",
-    "Git/Pasted image 20230711133559.png",
     "Git",
     "GIT_버전관리.md",
     "버전 관리.md",
@@ -186,14 +198,10 @@
     "IB_part/IB파트.md",
     "IB_part",
     "read me.md",
-    "Note Name.md",
-    "무제 파일 1.md",
-    "test111.md",
     "Context/MIN_Obsidian.mdb",
     "Context/spacesLastSync.log",
     "Context",
     "무제 파일.canvas",
-    "().md",
     "image",
     "path/to",
     "path"
