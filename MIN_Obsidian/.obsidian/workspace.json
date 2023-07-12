@@ -4,17 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "6faff6374e99200a",
+        "id": "4a3d0a717840aafe",
         "type": "tabs",
         "children": [
           {
-            "id": "c8209ea53a73a570",
+            "id": "aac6b432ce288d3e",
             "type": "leaf",
             "state": {
-              "type": "make-folder-view",
-              "state": {
-                "contextPath": "IB_part"
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -92,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "IB_part/IB_part.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -109,7 +106,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "IB_part/IB_part.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -131,9 +127,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "IB_part/IB_part.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -155,14 +149,33 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "c8209ea53a73a570",
+  "active": "feaf3458f03e0138",
   "lastOpenFiles": [
+    "Git/버전 관리.md",
+    "ETC_TEST/ETC_TEST.md",
+    "ETC_TEST/markdown-cheat-sheet.md",
+    "ETC_TEST/front.md",
+    "무제 파일.md",
+    "ETC_TEST",
+    "markdown-cheat-sheet.md",
+    "ETC_TEST/Test.md",
+    "ETC_TEST/frontmatter.md",
+    "cheat_sheet.md",
+    "Git/Pasted image 20230711171515.png",
+    "Git/Pasted image 20230711171329.png",
+    "Git/Pasted image 20230711171313.png",
+    "Git/Pasted image 20230711171159.png",
+    "Git/Pasted image 20230711170329.png",
+    "Git/Pasted image 20230711170313.png",
+    "Git/Pasted image 20230711165910.png",
+    "Git/Pasted image 20230711135444.png",
+    "Git/Pasted image 20230711133758.png",
+    "Git/Pasted image 20230711133559.png",
+    "Git",
+    "GIT_버전관리.md",
+    "버전 관리.md",
     "IB_part/IIB_memo.md",
     "IB_part/MQ_memo.md",
-    "front.md",
-    "frontmatter.md",
-    "Test.md",
-    "markdown-cheat-sheet.md",
     "image/image.md",
     "IB_part/DB_memo.md",
     "IB_part/ETC_memo(OS, vi, network).md",
@@ -177,21 +190,12 @@
     "무제 파일 1.md",
     "test111.md",
     "Context/MIN_Obsidian.mdb",
-    "image/001.png",
     "Context/spacesLastSync.log",
     "Context",
     "무제 파일.canvas",
     "().md",
-    "test2.md",
-    "test 1.md",
-    "[.md",
-    "image/001.jpg",
-    "image/image001.jpg",
     "image",
-    "path/to/img.jpg.md",
-    "Google.md",
     "path/to",
-    "path",
-    "무제 폴더/무제 파일.md"
+    "path"
   ]
 }
