@@ -52,10 +52,7 @@
       "IB파트",
       "IB파트",
       "ETC_TEST",
-      "Git",
-      "Git",
-      "Git",
-      "image"
+      "RESTful_API"
     ]
   },
   "expandedSpaces": [
@@ -93,7 +90,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1689151450268,
+  "spacesAutoBackupLast": 1689151761631,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "alias",

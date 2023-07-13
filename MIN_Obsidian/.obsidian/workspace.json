@@ -11,11 +11,9 @@
             "id": "aac6b432ce288d3e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "make-folder-view",
               "state": {
-                "file": "Git/버전 관리.md",
-                "mode": "source",
-                "source": false
+                "contextPath": "RESTful_API"
               }
             }
           }
@@ -94,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Git/버전 관리.md",
+                "file": "RESTful_API/RESTful_API.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +109,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Git/버전 관리.md",
+                "file": "RESTful_API/RESTful_API.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +132,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Git/버전 관리.md"
+                "file": "RESTful_API/RESTful_API.md"
               }
             }
           }
@@ -157,10 +155,15 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "feaf3458f03e0138",
+  "active": "aac6b432ce288d3e",
   "lastOpenFiles": [
-    "image/Pasted.md",
+    "ETC_TEST/Test.md",
+    "RESTful_API/버전 관리 1.md",
+    "RESTful_API/RESTful_API.md",
     "Git/버전 관리.md",
+    "RESTful_API",
+    "무제 파일.md",
+    "image/Pasted.md",
     "Git/Pasted.md",
     "image/image_20230711133559.png",
     "Git/Pasted image 20230711133758.png",
@@ -171,11 +174,9 @@
     "Git/Pasted image 20230711171515.png",
     "Git/Pasted image 20230711170329.png",
     "Git/Git.md",
-    "ETC_TEST/Test.md",
     "ETC_TEST/front.md",
     "ETC_TEST/markdown-cheat-sheet.md",
     "ETC_TEST/ETC_TEST.md",
-    "무제 파일.md",
     "ETC_TEST",
     "markdown-cheat-sheet.md",
     "ETC_TEST/frontmatter.md",
@@ -195,9 +196,7 @@
     "IB_part/MFT_memo.md",
     "[[[[[[markdown-cheat-sheet.md",
     "IB_part/IB_part.md",
-    "IB_part/IB파트.md",
     "IB_part",
-    "read me.md",
     "Context/MIN_Obsidian.mdb",
     "Context/spacesLastSync.log",
     "Context",
