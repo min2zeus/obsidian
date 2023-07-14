@@ -52,6 +52,13 @@
       "IB파트",
       "IB파트",
       "ETC_TEST",
+      "RESTful_API",
+      "RESTful_API",
+      "RESTful_API",
+      "RESTful_API",
+      "RESTful_API",
+      "RESTful_API",
+      "RESTful_API",
       "RESTful_API"
     ]
   },
@@ -90,7 +97,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1689151761631,
+  "spacesAutoBackupLast": 1689317537651,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "alias",
