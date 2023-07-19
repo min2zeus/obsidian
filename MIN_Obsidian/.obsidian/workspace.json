@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "RESTful_API/Overview.md",
+                "file": "MongoDB/Overview.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "RESTful_API/Overview.md",
+                "file": "MongoDB/Overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "RESTful_API/Overview.md",
+                "file": "MongoDB/Overview.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "RESTful_API/Overview.md"
+                "file": "MongoDB/Overview.md"
               }
             }
           }
@@ -152,21 +152,24 @@
       "canvas:새 캔버스 만들기": false,
       "daily-notes:오늘의 데일리 노트 열기": false,
       "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false,
-      "obsidian-textgenerator-plugin:Generate Text!": false,
-      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
+      "command-palette:명령어 팔레트 열기": false
     }
   },
   "active": "aac6b432ce288d3e",
   "lastOpenFiles": [
     "RESTful_API/Overview.md",
-    "Git/버전 관리.md",
+    "MongoDB/Overview.md",
+    "MongoDB",
+    "RESTful_API/MQ 관리 REST API.md",
+    "RESTful_API/http_상태코드.png",
     "ETC_TEST/markdown-cheat-sheet.md",
     "ETC_TEST/Test.md",
+    "ETC_TEST/frontmatter.md",
+    "ETC_TEST/front.md",
+    "Git/버전 관리.md",
     "RESTful_API/버전 관리 1.md",
     "RESTful_API/RESTful_API.md",
     "RESTful_API",
-    "무제 파일.md",
     "image/Pasted.md",
     "Git/Pasted.md",
     "image/image_20230711133559.png",
@@ -178,15 +181,12 @@
     "Git/Pasted image 20230711171515.png",
     "Git/Pasted image 20230711170329.png",
     "Git/Git.md",
-    "ETC_TEST/front.md",
     "ETC_TEST/ETC_TEST.md",
     "ETC_TEST",
     "markdown-cheat-sheet.md",
-    "ETC_TEST/frontmatter.md",
     "cheat_sheet.md",
     "Git/Pasted image 20230711171329.png",
     "Git/Pasted image 20230711171313.png",
-    "Git/Pasted image 20230711171159.png",
     "Git",
     "GIT_버전관리.md",
     "버전 관리.md",
@@ -196,15 +196,12 @@
     "IB_part/DB_memo.md",
     "IB_part/ETC_memo(OS, vi, network).md",
     "IB_part/MTE_memo.md",
-    "IB_part/MFT_memo.md",
-    "[[[[[[markdown-cheat-sheet.md",
     "IB_part",
     "Context/MIN_Obsidian.mdb",
     "Context/spacesLastSync.log",
     "Context",
     "무제 파일.canvas",
     "image",
-    "path/to",
-    "path"
+    "path/to"
   ]
 }

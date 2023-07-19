@@ -1,22 +1,63 @@
-# 1.RESTful API란?
-## 1.1 개념 / 탄생
-REST(RESTful, Representational State Transfer, RESTful, 레스트풀) API는<span style='color:#20bf6b'> REST 아키텍처 스타일의 제약 조건을 준수하고 RESTful 웹 서비스와 상호 작용할 수 있도록 하는 애플리케이션 프로그래밍 인터페이스</span>(API 또는 웹 API)입니다. REST는 Representational State Transfer의 줄임말이며, 2000년도에 로이 필딩 (Roy Fielding)의 박사학위 논문에서 최초로 소개되었습니다. 로이 필딩은 HTTP의 주요 저자 중 한 사람으로 그 당시 웹(HTTP) 설계의 우수성에 비해 제대로 사용되어지지 못하는 모습에 안타까워하며 웹의 장점을 최대한 활용할 수 있는 아키텍처로써 REST를 발표했다고 합니다.
+# 1.MongoDB?
+## 1.1 소개
+MongoDB는 C++로 작성된 오픈소스 문서지향(Document-Oriented) 적 Cross-platform 데이터베이스이며, 뛰어난 확장성과 성능을 자랑합니다 .[NoSQL](https://namu.wiki/w/NoSQL "NoSQL") [DBMS](https://namu.wiki/w/DBMS "DBMS")의 한 종류이며, [MySQL](https://namu.wiki/w/MySQL "MySQL") 처럼 전통적인 테이블-관계 기반의 [RDBMS](https://namu.wiki/w/RDBMS "RDBMS")가 아니라 [SQL](https://namu.wiki/w/SQL "SQL")을 사용하지 않는다. 또한, 현존하는 NoSQL 데이터베이스 중 인지도 1위를 유지하고 있습니다.
 
-## 1.2 API란 ?
-* API는 애플리케이션 소프트웨어를 구축하고 통합하기 위한 정의 및 프로토콜 세트
-* API는 정보 제공자와 정보 사용자 간의 계약으로 지칭되며 소비자에게 필요한 콘텐츠(호출)와 생산자에게 필요한 콘텐츠(응답)를 구성
-	- ex) 날씨 서비스용 API 설계에서는 사용자는 우편번호를 제공하고, 생산자는 두 부분(첫 번째는 최고 기온, 두 번째는 최저 기온)으로 구성된 응답으로 답하도록 지정할 수 있습니다.  
-* **컴퓨터나 시스템과 상호 작용하여 정보를 검색하거나 기능을 수행하고자 할 때 API는 사용자가 원하는 것을 시스템에 전달할 수 있게 지원하여 시스템이 이 요청을 이해하고 이행하도록 하는 것**
-* API를 사용자 또는 클라이언트, 그리고 사용자와 클라이언트가 얻으려 하는 리소스 또는 웹 서비스 사이의 조정자로 생각할 수 있음
-	* 웹 API는 클라이언트와 웹 리소스 사이의 게이트웨이
-* API는 조직이 보안, 제어, 인증을 유지 관리(누가 무엇에 액세스할 수 있는지 결정)하면서 리소스와 정보를 공유할 수 있는 방법
-* API의 또 다른 장점은 캐싱, 즉 리소스 검색 방법 또는 리소스의 출처에 대해 자세히 알 필요가 없다는 것이다.
-* 추가 자료 [(API)](https://www.redhat.com/ko/topics/api/what-are-application-programming-interfaces) 
+## 1.2 NoSQL?
+흔히 NoSQL이라고 해서 아, SQL이 없는 데이터베이스구나! 라고 생각 할 수도 있겠지만, 진짜 의미는 Not Only SQL 입니다. 기존의 RDBMS의 한계를 극복하기 위해 만들어진 새로운 형태의 데이터저장소 입니다. 관계형 DB가 아니므로, RDMS처럼 고정된 스키마 및 JOIN 이 존재하지 않습니다.
 
-## 1.3 REST
-- REST는 프로토콜이나 표준이 아닌 아키텍처 제약 조건입니다. API 개발자는 REST를 다양한 방식으로 구현할 수 있습니다.
-- RESTful API를 통해 클라이언트 요청이 수행될 때 RESTful API는 리소스 상태에 대한 표현을 요청자 또는 엔드포인트에 전송합니다. 이 정보 또는 표현은 HTTP: JSON(Javascript Object Notation), HTML, XLT, Python, PHP 또는 일반 텍스트를 통해 몇 가지 형식으로 전송됩니다. JSON이 가장 널리 사용되는 파일 형식입니다. 
-- 그 외에 헤더와 매개 변수는 요청의 메타데이터, 권한 부여, URI(Uniform Resource Identifier), 캐싱, 쿠키 등에 대한 중요한 식별자 정보를 포함하고 있기 때문에 RESTful API HTTP 요청의 HTTP 메서드에서도 중요하다는 점을 유의해야 합니다. 요청 헤더와 응답 헤더가 있으며, 각각 고유한 HTTP 연결 정보 및 상태 코드가 있습니다.
+
+## 1.3 특징
+MongoDB는MySQL의 테이블과 같은 스키마가 고정된 구조 대신 [JSON](https://namu.wiki/w/JSON "JSON") 형태의 동적 스키마형 문서를 사용한다. 이를 MongoDB에서는 BSON(Binary JSON)이라는 독자적인 형식을 사용하는데, 데이터의 타입까지 포함되어 이진형태로 인코딩되어 저장되기 때문에 JSON과는 다른 차이점이 있다.  
+  
+MongoDB는 가장 기본적인 데이터를 Document 라고 부른다. 이는 MySQL같은 RDBMS에서는 row에 해당된다. 이 Document의 집합을 Collection이라고 하는데, RDBMS에서는 테이블(Table)에 해당된다. Collection의 집합은 DB이고, 이는 RDBMS에서도 동일하다.  
+  
+똑같은 조건으로 설계되었을 시 기존 RDBMS 속도보다 굉장히 빠르다는 장점이 있다. 이런 속도는 ACID를 포기한 댓가로 얻은 것이다. 따라서 데이터 일관성(Consistency)이 거의 필요 없고 조인 연산을 Embeded로 대체할 수 있는 경우에는 MongoDB가 확실한 대안이 될 수 있다. 반대로 저장하는 데이터가 은행 데이터 같이 일관성(Consistency)이 매우 중요한 작업에는 MongoDB를 쓰기 매우 힘들다.
+```
+ACID는 데이터베이스 트랜잭션의 속성을 설명하는 약어로 데이터베이스 트랜잭션이 안정성과 일관성을 보장하는지 확인하는 기준으로 사용됩니다
+```
+
+
+## 1.4 RDBMS와 비교 
+
+|**RDBMS**|**MongoDB**||
+|:--:|:--:|
+|Database|Database|
+|Table|Collection|
+|Tuple / Row|Document|
+|Column|Key / Field|
+|Table Join|Embedded Documents|
+|Primary Key|Primary Key (_id)|
+
+
+#### MongoDB장점
+- Schema-less (Schema가 없다. 같은 Collection 안에 있을지라도 다른 Schema를 가지고 있을 수 있다)
+- 각 객체의 구조가 뚜렷하다
+- 복잡한 JOIN 이 없다.
+- Deep Query ability (문서지향적 Query Language 를 사용하여 SQL 만큼 강력한 Query 성능을 제공한다.
+- 어플리케이션에서 사용되는 객체를 데이터베이스에 추가 할 때 Conversion / Mapping이 불필요하다.
+
+RDBMS는 고유의 정적인 특성으로 인해, 트랜잭션 데이터를 관리하는 경우와 같이 데이터 무결성 및 격리가 필수적인 상황에서는 MongoDB보다 선호될 수 있습니다. 그러나 MongoDB는 형식이 덜 제한적이고 성능이 우수하므로, 특별히 가용성과 속도를 최우선으로 고려하는 상황에서는 보다 나은 선택이 될 수있다.
+
+* **MongoDB vs MySQL [비교자료](https://www.mongodb.com/ko-kr/compare/mongodb-mysql)** 
+
+## 1.5 MongoDB 사용사례
+1) 모바일 애플리케이션
+* MongoDB의 JSON 문서 모델을 활용하면 [클라우드 기반 스토리지 솔루션](https://www.ibm.com/kr-ko/topics/cloud-storage)뿐만 아니라 Apple iOS 및 Android 디바이스를 비롯한 백엔드 애플리케이션 데이터를 필요한 곳 어디에나 저장할 수 있습니다.
+2) 실시간 분석
+* MongoDB는 JSON 및 JSON과 유사한 문서(예: BSON)를 아주 손쉽게 Java 객체로 변환하므로, 여러 개발 환경의 실시간 정보를 분석하는 경우 MongoDB를 사용하면 매우 효율적이고 빠르게 데이터를 읽고 쓸 수 있습니다.
+3) 컨텐츠 관리 시스템
+* MongoDB를 사용하면 고유의 고가용성과 단일 데이터베이스를 통해 신규 기능 및 속성을 온라인 애플리케이션과 웹사이트에 손쉽게 추가할 수 있습니다.
+4) 엔터프라이즈 데이터 웨어하우스
+* MongoDB 및 Hadoop(분산 파일 시스템)을 활용해 위험 모델링, 예측 분석, 실시간 데이터 처리를 수행할 수 있습니다.
+
+## 1.6 Data Modelling
+**Schema 디자인 할 때 고려사항**
+- 사용자 요구 (User Requirement) 에 따라 schema를 디자인한다.
+- 객체들을 함께 사용하게 된다면 한 Document에 합쳐서 사용한다. (예: 게시물-댓글 과의 관계)  
+    그렇지 않으면 따로 사용한다 (그리고 JOIN 을 사용하지 않는 걸 확실히 해둔다)
+- 읽을 때 JOIN 하는게 아니라 데이터를 작성 할 때 JOIN 한다.
+관련 예제
+
 
 ### 1.3.1 REST 특징 / 기준
 1) Uniform (균일한 인터페이스)
