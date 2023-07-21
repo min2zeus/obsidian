@@ -159,8 +159,9 @@ Collection과 Document에 대해 알면 URI 설계가 한 층 더 쉬워집니�
 ![[http_상태코드.png]]
 
 
+
+
 ####  Reference
 * https://meetup.nhncloud.com/posts/92
 * https://www.redhat.com/ko/topics/api/what-is-a-rest-api
 * https://aws.amazon.com/ko/what-is/restful-api/
-
