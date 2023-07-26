@@ -1,0 +1,99 @@
+# 1.API Gateway?
+
+![api_gateway](https://blog.kakaocdn.net/dn/bjGPUw/btrRCZhz3ed/aklfq7RBJWxXyOyHB2F0u1/img.jpg)
+
+## 1.1 소개 / 개념
+최근 많은 서비스들이 독립적인 기능을 수행하는 작은 단위의 서비스들로 구성된 **마이크로 서비스 아키텍처(Micro Service Architecture)** 형태로 구축되면서 서비스의 복잡도를 줄일 수 있게 되었고, 변경에 따른 영향을 최소화하면서 개발과 배포를 할 수 있다는 장점을 얻고 있다.
+하지만 여기서 말하는 작은 단위의 서비스가 50개, 100개가 되었을 때, 이 많은 서비스들의 엔드포인트를 관리하는 데 있어서 어려움이 생기고, 또 각각의 서비스마다 공통적으로 들어가는 기능(ex 인증/인가, 로깅 등)들을 중복으로 개발해야 한다는 문제점이 발생한다.
+
+이러한 문제점을 해결하기 위해 등장한 것이 바로 **API Gateway**이며, API Gateway는 위 이미지와 같이 클라이언트와 각각의 서비스들 사이에 위치한다.
+
+클라이언트는 각 서비스의 엔드포인트 대신 **API Gateway로 요청을 보내게 되며, 요청을 받은 API Gateway는 설정에 따라 각 엔드포인트로 클라이언트를 대신하여 요청하고, 응답을 받으면 다시 클라이언트에게 전달하는 프록시(proxy) 역할**을 합니다. ([API 관리 툴](https://www.redhat.com/ko/topics/api/what-is-api-management))
+
+
+
+## 1.2 API Gateway를 사용하는 이유
+API 서비스는 기본적으로 원격 요청을 수락하고 응답을 반환합니다. 하지만 실제로는 이렇게 간단하게 실행되지는 않으며, 대규모 API를 호스팅할 때는 다양한 사항을 고려해야 합니다.
+
+- API가 남용되거나 과도하게 사용되지 않도록 보호하기 위해 인증 서비스나 속도 제한을 사용할 수 있습니다.
+- API가 어떻게 사용되고 있는지를 알고 싶은 경우 분석 및 모니터링 툴을 추가할 수 있습니다.
+- [수익화 API](https://www.redhat.com/ko/topics/api/what-is-api-monetization)가 있다면 빌링 시스템에 연결할 수 있습니다. (미터링&차징)
+- 단일 요청으로 서로 다른 수십 개의 애플리케이션에 대한 호출을 필요로 하는 경우 [마이크로서비스](https://www.redhat.com/ko/topics/microservices/what-are-microservices) 아키텍처를 채택할 수 있습니다. 
+- 시간이 지남에 따라 새로운 API 서비스를 추가하거나 사용 종료하게 되지만, 고객은 계속해서 모든 서비스를 동일한 장소에서 찾기를 원합니다.
+
+이러한 모든 복잡성을 해결하기 위해서는 고객에게 간단하고 신뢰할 수 있는 환경을 제공하는 것이 주요 과제이며, API Gateway는 클라이언트 인터페이스를 백엔드 구현 환경에서 분리할 수 있는 방법입니다. 클라이언트가 요청을 하면 API 게이트웨이가 이를 여러 개의 요청으로 나누어 적절한 위치로 전달하고, 응답을 생성하며, 모든 상황을 추적합니다.
+
+## 1.3 주요기능?
+
+- **인증/인가 및 토큰 발급**
+먼저 인증/인가의 경우, 각 서비스마다 공통으로 구현되어야 하는 필수적인 기능
+각각의 서비스마다 인증/인가 처리를 구현하는 것은 매우 비효율적이기 때문에 API Gateway에서 이 처리하여 효율적으로 수행
+```
+Spring으로 예를 들자면 각각의 서비스에 Spring Security 의존성을 추가해 해당 기능을 구현하는 것
+```
+
+
+![](https://blog.kakaocdn.net/dn/RPkXR/btrREWSgyr7/v9rNCKPxPUSasM7oNF0fRK/img.jpg)
+
+또한 API 사용을 위한 토큰 발급 기능도 마찬가지 이유로 API Gateway에서 처리된다.
+실제로 토큰 발급 기능은 인증을 위한 서비스(= 인증 서버)를 하나 두고 거기에서 처리되게 됩니다.
+
+```
+인증(Authentication) : 해당 사용자가 본인이 맞는지를 확인하는 절차
+인가(Authorization) : 인증된 사용자가 요청한 자원에 접근 가능한지를 확인하는 절차
+```
+
+
+- **공통 로직 처리**
+
+공통되는 기능을 각각의 서비스마다 구현하는 것은 번거로울 일일뿐더러 코드 수정이 필요할 때, 각각의 서비스를 다 수정해야 하는 등, 유지보수 측면에서의 어려움도 존재합니다.
+
+![](https://blog.kakaocdn.net/dn/IrGCf/btrRD0gfDMn/s5AKsabDLVNZlgyQ1rFld0/img.jpg)
+
+
+때문에 공통적으로 사용되는 로직의 경우 API Gateway에서 구현되는 것이 효율적이며, **개발 중복을 줄이는 것뿐만 아니라 표준 준수도 쉽다는 장점**을 가지고 있습니다.
+
+
+- **로드밸런싱**
+
+**대용량 처리 서비스에 있어서 로드밸런싱은 필수적인 부분**.
+
+기본적으로는 여러 개의 API 서버로 부하를 분산하는 기능이 주가 되겠지만, API 서버에 장애가 발생했을 때 이를 감지해서 로드밸런싱 리스트에서 빼고, 복구되었을 때 다시 로드밸런싱 리스트에 넣는 기능들이 필요합니다. _(health-check)_
+
+
+- **메디에이션 기능(Mediation)**
+
+메디에이션이란 "중재" 또는 "조정" 이라는 의미를 가지는데 API 서버가 클라이언트가 원하는 API 형태와 다를 때 API 게이트웨이가 이를 변경해주는 기능
+
+아래 그림은 메디에이션 기능 중에 **메세지 호출 변화(Message Exchange Pattern)**  이 예시가 됨.
+
+메세지 호출 패턴은 동기(Sync), 비동기(Async)와 같은 API를 호출하는 메세지 패턴을 정의하는 것인데, API Gateway를 이용하면 아래와 같이 동기 호출을 비동기 호출로 바꿀 수도 있습니다.
+
+![](https://blog.kakaocdn.net/dn/ABXC5/btrRBfkYgKj/WNKVpm3kWMcxiFJ5Q0VqoK/img.jpg)
+
+
+또한 클라이언트의 요청을 하위 서비스가 처리할 수 있도록 데이터 형식을 변형하거나, 하위 서비스의 응답 표준 포맷으로 데이터 형식을 변형하는 **메세지 포맷 변환(Message format transformation)** 기능도 있습니다.
+
+API Gateway의 정확한 역할은 구현 환경마다 달라지며, 위의 기능 외에도 많은 기능을 처리
+(인증/인가,  라우팅, 속도 제한, 빌링, 모니터링, 분석, 정책, 알림, 보안)
+
+```
+최근 API 호출 로깅을 통한 클라이언트의 API 호출 패턴을 분석하여 활용하는 것은
+빅데이터의 측면에서 중요한 자산으로도 다뤄지고 있습니다.
+QoS : API 서비스를 클라이언트 대상에 따라서 서비스 레벨을 조정하는 기능 (유료 / 무료)
+      특정 서비스나 클라이언트가 폭주하여 API를 과도하게 사용하여 다른 서비스들이 API를
+      사용할 수 없게 한다던가 그런 문제를 미연에 예방 (처리율 제한)
+```
+
+## 1.4. 상용화된 API Gateway
+
+**Amazon API Gateway, Kong Gateway, Tyk, KrakenD, Spring Cloud Gateway** 등이 상용 서비스로 개발되어 사용되고 있습니다. (IBM DataPower Gateway)
+
+
+
+
+
+####  Reference
+* https://wildeveloperetrain.tistory.com/205
+* https://www.redhat.com/ko/topics/api/what-does-an-api-gateway-do
+* https://www.redhat.com/ko/topics/api/what-is-api-management

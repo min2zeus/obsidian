@@ -4,7 +4,7 @@
 MongoDB는 C++로 작성된 오픈소스 문서지향(Document-Oriented) 적 Cross-platform 데이터베이스이며, 뛰어난 확장성과 성능을 자랑합니다 .[NoSQL](https://namu.wiki/w/NoSQL "NoSQL") [DBMS](https://namu.wiki/w/DBMS "DBMS")의 한 종류이며, [MySQL](https://namu.wiki/w/MySQL "MySQL") 처럼 전통적인 테이블-관계 기반의 [RDBMS](https://namu.wiki/w/RDBMS "RDBMS")가 아니라 [SQL](https://namu.wiki/w/SQL "SQL")을 사용하지 않는다. 또한, 현존하는 NoSQL 데이터베이스 중 인지도 1위를 유지하고 있습니다.
 
 ## 1.2 NoSQL?
-흔히 NoSQL이라고 해서 아, SQL이 없는 데이터베이스구나! 라고 생각 할 수도 있겠지만, 진짜 의미는 Not Only SQL 입니다. 기존의 RDBMS의 한계를 극복하기 위해 만들어진 새로운 형태의 데이터저장소 입니다. 관계형 DB가 아니므로, RDMS처럼 고정된 스키마 및 JOIN 이 존재하지 않습니다.
+흔히 NoSQL이라고 해서 아, SQL이 없는 데이터베이스구나! 라고 생각 할 수도 있겠지만, 진짜 의미는 Not Only SQL 입니다. 기존의 RDBMS의 한계를 극복하기 위해 만들어진 새로운 형태의 데이터저장소 입니다. 관계형 DB가 아니므로, RDBMS처럼 고정된 스키마 및 JOIN 이 존재하지 않습니다.
 
 
 ## 1.3 특징
@@ -42,9 +42,8 @@ ACID는 데이터베이스 트랜잭션의 속성을 설명하는 약어로 데�
 - ‘기본설정’으로 데이터를 쓰는(Write)것은 안전하지 않음 (데이터 안전성의 문제)
 - 써야 할 데이터 양이 많으면 감당하지 못함
 - 데이터 삭제나 업데이트를 했을 때 단편화 문제를 발생시켜 데이터 처리에 필요 이상의 메모리를 사용
-- 데이터 복제가 필요 이상의 서버를 차지한다는 이유  
+- 데이터 복제가 필요 이상의 서버를 차지한다는 이유
 - 몽고DB 속도는 인덱스 사이즈와 메모리에 달려 있는데, 메모리가 가득 차서 HDD로 내려가 데이터를 처리할 경우 처리 속도가 급감  
-  
 
 RDBMS는 고유의 정적인 특성으로 인해, 트랜잭션 데이터를 관리하는 경우와 같이 데이터 무결성 및 격리가 필수적인 상황에서는 MongoDB보다 선호될 수 있습니다. 그러나 MongoDB는 형식이 덜 제한적이고 성능이 우수하므로, 특별히 가용성과 속도를 최우선으로 고려하는 상황에서는 보다 나은 선택이 될 수있다.
 
@@ -75,7 +74,7 @@ RDBMS는 고유의 정적인 특성으로 인해, 트랜잭션 데이터를 관�
 
 
 * RDBMS 디자인의 경우 (테이블 3개를 생성하여 JOIN)
-![d](https://velopert.com/wp-content/uploads/2016/02/d.png)
+![RDBMS_schema](https://velopert.com/wp-content/uploads/2016/02/d.png)
 
 * MongoDB 디자인 (NoSQL 에선 하나의 Document로 처리)
 ```

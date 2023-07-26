@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "RESTful_API/Overview.md",
+                "file": "API_Gateway/Overview.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "RESTful_API/Overview.md",
+                "file": "API_Gateway/Overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "RESTful_API/Overview.md",
+                "file": "API_Gateway/Overview.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "RESTful_API/Overview.md"
+                "file": "API_Gateway/Overview.md"
               }
             }
           }
@@ -157,8 +157,14 @@
   },
   "active": "aac6b432ce288d3e",
   "lastOpenFiles": [
-    "MongoDB/Overview.md",
+    "RESTful_API/stateless achitecture.md",
+    "API_Gateway/Overview.md",
     "RESTful_API/Overview.md",
+    "API_Gateway/무제 파일.md",
+    "MongoDB/Overview.md",
+    "API_Gateway/API_Gateway.md",
+    "API_Gateway",
+    "RESTful_API/restapi.png",
     "MongoDB/MongoDB.md",
     "MongoDB",
     "RESTful_API/MQ 관리 REST API.md",
@@ -187,22 +193,16 @@
     "markdown-cheat-sheet.md",
     "cheat_sheet.md",
     "Git/Pasted image 20230711171329.png",
-    "Git/Pasted image 20230711171313.png",
     "Git",
     "GIT_버전관리.md",
     "버전 관리.md",
     "IB_part/IIB_memo.md",
     "IB_part/MQ_memo.md",
-    "image/image.md",
-    "IB_part/DB_memo.md",
-    "IB_part/ETC_memo(OS, vi, network).md",
-    "IB_part/MTE_memo.md",
     "IB_part",
     "Context/MIN_Obsidian.mdb",
     "Context/spacesLastSync.log",
     "Context",
     "무제 파일.canvas",
-    "image",
-    "path/to"
+    "image"
   ]
 }

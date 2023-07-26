@@ -1,4 +1,5 @@
 # 1.RESTful API란?
+![restapi](https://appmaster.io/cdn-cgi/image/width=768,quality=83,format=auto/api/_files/PS5t33Gt2UUbKJdHsWNv4Q/download/)
 ## 1.1 개념 / 탄생
 REST(RESTful, Representational State Transfer, RESTful, 레스트풀) API는<span style='color:#20bf6b'> REST 아키텍처 스타일의 제약 조건을 준수하고 RESTful 웹 서비스와 상호 작용할 수 있도록 하는 애플리케이션 프로그래밍 인터페이스</span>(API 또는 웹 API)입니다. REST는 Representational State Transfer의 줄임말이며, 2000년도에 로이 필딩 (Roy Fielding)의 박사학위 논문에서 최초로 소개되었습니다. 로이 필딩은 HTTP의 주요 저자 중 한 사람으로 그 당시 웹(HTTP) 설계의 우수성에 비해 제대로 사용되어지지 못하는 모습에 안타까워하며 웹의 장점을 최대한 활용할 수 있는 아키텍처로써 REST를 발표했다고 합니다.
 
@@ -99,12 +100,12 @@ DELETE /members/1
 5) HTTP METHOD의 알맞은 역할
 URI는 자원을 표현하는 데에 집중하고 행위에 대한 정의는 HTTP METHOD를 통해 하는 것이 REST한 API를 설계하는 중심 규칙입니다.
 
-|METHOD|역할||
-|:--:|:--|
-|POST|POST를 통해 해당 URI를 요청하면 리소스를 생성합니다.|
-|GET|GET를 통해 해당 리소스를 조회합니다. 리소스를 조회하고 해당 도큐먼트에 대한 자세한 정보를 가져온다.|
-|PUT|PUT를 통해 해당 리소스를 수정합니다.|
-|DELETE|DELETE를 통해 리소스를 삭제합니다.|
+|METHOD|역할|사용예시||
+|:--:|:--|:--|
+|POST|POST를 통해 해당 URI를 요청하면 리소스를 생성합니다.|회원가입/글쓰기|
+|GET|GET를 통해 해당 리소스를 조회합니다. 조회 후 해당 도큐먼트에 대한 정보를 가져온다.|접속/정보 검색|
+|PUT|PUT를 통해 해당 리소스를 수정합니다.|회원 정보 수정|
+|DELETE|DELETE를 통해 리소스를 삭제합니다.|회원 정보 삭제|
 
 
 #### 1.3.5.2 URI 설계 시 유의사항

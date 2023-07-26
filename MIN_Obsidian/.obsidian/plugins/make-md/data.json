@@ -51,11 +51,7 @@
       "IB파트",
       "IB파트",
       "IB파트",
-      "ETC_TEST",
-      "MongoDB",
-      "MongoDB",
-      "MongoDB",
-      "RESTful_API"
+      "API_Gateway"
     ]
   },
   "expandedSpaces": [
@@ -93,7 +89,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1689817837300,
+  "spacesAutoBackupLast": 1690352689888,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "alias",
