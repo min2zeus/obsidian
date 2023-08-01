@@ -9,7 +9,9 @@
 이러한 문제점을 해결하기 위해 등장한 것이 바로 **API Gateway**이며, API Gateway는 위 이미지와 같이 클라이언트와 각각의 서비스들 사이에 위치한다.
 
 클라이언트는 각 서비스의 엔드포인트 대신 **API Gateway로 요청을 보내게 되며, 요청을 받은 API Gateway는 설정에 따라 각 엔드포인트로 클라이언트를 대신하여 요청하고, 응답을 받으면 다시 클라이언트에게 전달하는 프록시(proxy) 역할**을 합니다. ([API 관리 툴](https://www.redhat.com/ko/topics/api/what-is-api-management))
-
+```
+API 게이트웨이의 시작은 MSA가 SOA(서비스 지향 아키텍쳐)에서 시작한것 처럼 ESB (Enterprise Service Bus)에서 부터 시작 되었다. 그래서 ESB의 대부분의 컨셉을 많이 승계했는데, ESB의 실패와 단점을 보완해서 만들어진 사상이 API 게이트웨이이다. ESB가 SOAP/XML 웹서비스 기반의 많은 기능을 가지는 구조였다면, API 게이트 웨이는 JSON/REST 기반에 최소한의 기능을 처리하는 경량화 서비스 이다. 그리고 ESB는 SOA의 사상에서 개념적으로 탄생한 솔루션이라면, API 게이트 웨이는 ESB의 실패와, MSA, REST 구현 사례를 통해서 필요에 의해서 탄생한 솔루션이기 때문에, 그 실용성이 차이가 난다.
+```
 
 
 ## 1.2 API Gateway를 사용하는 이유
