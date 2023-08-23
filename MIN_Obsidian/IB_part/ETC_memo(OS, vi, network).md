@@ -106,6 +106,7 @@ scp  파일이름  아이디@아이피:/디렉토리
 ### 프롬프트에 계정, path 나오게 하는 방법
 .profile에 추가
 export PS1='['`hostname`':$LOGNAME:$PWD] '
+export PS1='[$LOGNAME@'`hostname`':$PWD] '
 
 
 ### ^M 지우는 방법

@@ -1,5 +1,5 @@
 ---
-sticker: emoji//1f98a
+sticker: emoji//1f638
 ---
 
 
