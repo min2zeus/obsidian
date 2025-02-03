@@ -255,3 +255,51 @@ http://msdn.microsoft.com/en-us/library/windows/desktop/ms740668(v=vs.85).aspx
 
 
 
+### 쉘안에서 기동되는 java 에 입력값 적용
+(echo localhost; echo 7474; echo SYSTEM.DEF.SVRCONN; echo mqm; echo ''; echo MQ92;) | java MQIVP
+
+
+- for 문 추가
+for i in 1 2 3
+	do
+        (echo localhost; echo 7474; echo SYSTEM.DEF.SVRCONN; echo mqm; echo ''; echo MQ92;) | java MQIVP
+        sleep 1
+	done;
+mqm@kbmq1:~/min:> 
+
+
+### Cisco 계정
+
+| ID    | PASS  | 사용자     |
+| ----- | ----- | ------- |
+| ma104 | ma14$ | 홍종민     |
+|       |       | 이민지     |
+|       |       | 임준수     |
+| ma105 | ma15$ | 공정환     |
+|       |       | 국종우<br> |
+| ma106 | ma16$ |         |
+| ma107 | ma17$ |         |
+| ma108 | ma18$ |         |
+| ma109 | ma19$ |         |
+
+### Defect 계정
+lmjalswl
+1234qwer!
+
+### perl 사용
+디폴트 큐매니져 변경
+perl -pi -e 's/ESB1D/ESB1P/g' /var/mqsi/components/ESB1PBK/servers/ESB*/over*/server*
+
+/ 내용 바꾸는 법 \\ 사용
+perl -pi -e 's/opt'\/\mqm/test/g' start.sh
+
+
+### nmon_analyser 사용
+
+nmon -f -t -s 1 -c 10
+	    1초  10번
+nmon 파일 출력
+
+sort AIX72_241122_1652.nmon > AIX72_241122_1652.csv
+
+파일 csv 파일로 변경

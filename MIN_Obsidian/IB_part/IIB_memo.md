@@ -352,6 +352,10 @@ eclipse
 시작 명령: mqsistartmsgflow IBMBK -e TEST -m TEST_MFLOW
 정지 명령: mqsistopmsgflow IBMBK -e TEST -m TEST_MFLOW -f normal
 
+ACE12
+시작 명령: mqsistartmsgflow MINBK -e MIN_EG -k MIN_EG_DefaultApplication -m TEST
+정지 명령: mqsistopmsgflow MINBK -e MIN_EG -k MIN_EG_DefaultApplication -m TEST
+
 
 ### 브로커 자원배포 명령어
 명령어로 bar 생성 - mqsicreatebar 명령어로 가능
@@ -537,4 +541,341 @@ false로 놓으면 접속 불가
 and administration URI 'http://hcm-173:4414'
 
 
+
+### ACE에서 HTTPS 연결
+실행그룹 - https listener 포트
+변경
+mqsichangeproperties BK1 -e EG01 \
+-o HTTPSConnector -n explicitlySetPortNumber -v 7788
+확인
+mqsireportproperties BK1 -e EG01 -o HTTPSConnector -r
+
+실행그룹 - http/https listener 를 사용하도록 설정
+변경
+mqsichangeproperties BK1 -f -e EG01 -o ExecutionGroup \
+-n httpNodesUseEmbeddedListener -v true
+확인
+mqsireportproperties BK1 -f -e EG01 -o ExecutionGroup \
+-n httpNodesUseEmbeddedListener
+
+실행그룹 - https 속성 설정
+확인
+mqsireportproperties BK1 -e EG01 -o HTTPSConnector -r
+
+상호 인증 사용 : 기본 값 ReqClientAuth='false’
+-  클라이언트에서도 별도의 인증서를 사용해서 인증하는 기능.
+- 그대로 false 로 놔둔다.
+
+프로토콜 : 기본 값 : TLSProtocols='' : none 값. 사용불가.
+- 변경 : TLSv1.2 / TLSv1.3 / all (대소문자 구분X) 셋 중 하나로 변경한다.
+mqsichangeproperties BK1 -e EG01 \
+-o HTTPSConnector -n TLSProtocols -v all
+
+
+ACE 와 인증서에 대하여
+https 서버
+- (툴킷) http input 노드 ⇒ 속성 Basic ⇒ Use HTTPS 체크박스 클릭
+- (ACE runtime) ‘키저장소’에 인증서가 있어야 한다.
+https 클라이언트
+- (툴킷) http request 노드 ⇒ 속성 Basic ⇒ Web service URL ⇒ 주소를 넣을 때  ‘https://~’ 로 시작하게 입력한다.
+- (툴킷) 또는 호출 전 esql 에서 
+  ‘SET OutputLocalEnvironment.Destination.HTTP.RequestURL =’ 로 지정한다.
+- (ACE runtime) ‘신뢰저장소’에 인증서가 있어야 한다.
+
+실행그룹의 ‘키저장소’ 설정
+mqsichangeproperties BK1 -e EG01 -o ComIbmJVMManager \
+-n keystoreFile -v '/var/mqsi/keystore/eai_keystore.jks'
+mqsichangeproperties BK1 -e EG01 -o ComIbmJVMManager \
+-n keystorePass -v brokerKeystore::password
+mqsichangeproperties BK1 -e EG01 -o ComIbmJVMManager \
+-n keystoreType -v 'jks'
+mqsisetdbparms BK1 -n brokerKeystore::password \
+-u temp -p mocomsys1!
+
+실행그룹의 ‘신뢰저장소’ 설정
+mqsichangeproperties BK1 -e EG01 -o ComIbmJVMManager \
+-n truststoreFile \
+-v '/var/mqsi/truststore/eai_truststore.jks'
+mqsichangeproperties BK1 -e EG01 -o ComIbmJVMManager \
+-n truststorePass -v brokerTruststore::password
+mqsichangeproperties BK1 -e EG01 -o ComIbmJVMManager \
+-n truststoreType -v 'jks'
+mqsisetdbparms BK1 -n brokerTruststore::password \
+-u temp -p mocomsys1!
+
+확인
+mqsireportproperties BK1 -e EG01 -o ComIbmJVMManager -r
+
+ACE 설정은 완료되었고, 인증서 및 저장소는 아래 3가지 방법 중 1가지로 설정할 수 있다.
+
+인증서 설정하는 방법
+1. 자체 서명 인증서를 사용하는 방법
+**서버**
+mkdir /var/mqsi/keystore
+cd /var/mqsi/keystore
+- 키저장소 생성
+runmqckm -keydb -create -db eai_keystore.jks \
+-pw mocomsys1! -type jks
+
+- 자체 서명 인증서 생성
+runmqckm -cert -create -db eai_keystore.jks \
+-label eai_cert \
+-dn "CN=BK1.EG01,O=IBM,OU=ISSW,L=Hursley,C=GB" \
+-pw mocomsys1! -expire 7300
+- 생성된 인증서 내용 보기
+runmqckm -cert -details -db eai_keystore.jks \
+-pw mocomsys1! -label eai_cert
+- 인증서 추출
+runmqckm -cert -extract -db eai_keystore.jks \
+-pw mocomsys1! -label eai_cert \
+-target eai_cert.arm -format ascii
+- 키 저장소의 모든 인증서 확인
+runmqckm -cert -list -db eai_keystore.jks -pw mocomsys1!
+
+**클라이언트**
+mkdir /var/mqsi/truststore
+cd /var/mqsi/truststore
+cp /var/mqsi/keystore/eai_cert.arm .
+runmqckm -keydb -create -db eai_truststore.jks \
+-pw mocomsys1! -type jks
+runmqckm -cert -add -db eai_truststore.jks \
+-label EAICert -file eai_cert.arm -format ascii
+
+2. 공인인증서의 pfx 파일을 저장소에 보관하고 사용하는 방법
+**서버**
+cd /var/mqsi/keystore
+- 기존 .jks 파일 지워도 됨.
+- 공인인증서에서 .pfx 파일을 여기에 복사해넣는다.
+- 해당 파일의 비밀번호도 미리 알고 있어야 한다.
+runmqckm -keydb -create -db eai_keystore.jks \
+-pw mocomsys1! -type jks
+
+runmqckm -cert -import -db _wildcard_MOCOMSYS_COM.pfx \
+-type pkcs12 -target eai_keystore.jks \
+-target_pw mocomsys1!
+- 확인
+runmqckm -cert -list -db eai_keystore.jks -pw mocomsys1!
+
+**클라이언트**
+cd /var/mqsi/truststore
+- 기존 .jks 파일 지워도 됨.
+- 공인인증서에서 .pfx 파일을 여기에 복사해넣는다.
+- 해당 파일의 비밀번호도 미리 알고 있어야 한다.
+runmqckm -keydb -create -db eai_truststore.jks \
+-pw mocomsys1! -type jks
+runmqckm -cert -import -db _wildcard_MOCOMSYS_COM.pfx \
+-type pkcs12 -target eai_truststore.jks \
+-target_pw mocomsys1!
+- 확인
+runmqckm -cert -list -db eai_truststore.jks -pw mocomsys1!
+
+3. 공인인증서 및 체인인증서를 p12 파일로 만들고 저장소에
+보관하여 사용하는 방법
+
+**서버**
+- p12 파일 만들기.
+export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
+- 인증서 및 체인인증서 순서는 인증서를 다 열어보고 알아내야 한다.
+cat _wildcard_MOCOMSYS_COM.crt \
+ChainCA/SectigoRSADomainValidationSecureServerCA.crt \
+ChainCA/SectigoRSAAddTrustCA.crt \
+ChainCA/AAACertificateServices.crt > mocomsys.crt.pem
+openssl pkcs12 -in mocomsys.crt.pem -export \
+-inkey _wildcard_MOCOMSYS_COM_SHA256WITHRSA.key \
+-out mocomsys.p12
+cd /var/mqsi/keystore
+- 기존 .jks 파일 지워도 됨.
+- 생성한 .p12 파일을 여기에 복사해넣는다.
+- 해당 파일의 비밀번호도 미리 알고 있어야 한다.
+runmqckm -keydb -create -db eai_keystore.jks \
+-pw mocomsys1! -type jks
+runmqckm -cert -import -db mocomsys.p12 -type pkcs12 \
+-target eai_keystore.jks -target_pw mocomsys1!
+- 확인
+runmqckm -cert -list -db eai_keystore.jks -pw mocomsys1!
+
+**클라이언트**
+cd /var/mqsi/truststore
+- 기존 .jks 파일 지워도 됨.
+- 생성한 .p12 파일을 여기에 복사해넣는다.
+- 해당 파일의 비밀번호도 미리 알고 있어야 한다.
+runmqckm -keydb -create -db eai_truststore.jks \
+-pw mocomsys1! -type jks
+runmqckm -cert -import -db mocomsys.p12 -type pkcs12 \
+-target eai_truststore.jks -target_pw mocomsys1!
+- 확인
+runmqckm -cert -list -db eai_truststore.jks -pw mocomsys1!
+
+
+### IIB https 설정 (아시아나 ESB(AS-IS))
+
+- **인증서 관리**
+
+Java Security 설정 파일 변경
+
+ 파일 : /opt/IBM/iib-10.0.0.13/common/jre/lib/security/java.security
+
+ 백업 파일 위치  : Z:\2.시스템 구축\3.D(설계)\설치가이드\JAVA SECURITY\
+
+Integration Node에서 사용하는 CA저장소 (인증서 저장소) 
+
+ 파일 : /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts
+
+Integration Node 에 CA 저장소 등록 : CA 저장소를 Integration Node에 등록 후에는 필히 재기동 한다.
+
+ 1.  CA 저장소 패스워드 등록
+
+예 ) mqsisetdbparms <Integration Node 명> -n  <식별자 명> -u <사용자아이디> -p <패스워드>
+
+mqsisetdbparms ESB1DBK -n brokerTruststore::password -u ignore -p changeit
+
+mqsisetdbparms ESB1DBK -n brokerKeystore::password -u ignore -p changeit
+
+2. Integration Node의 Registry 에 등록
+
+예) mqsichangeproperties <Integraion Node명> -o BrokerRegistry -n <속성1,속성2..> -v”<속성1값,속정2값>”
+
+mqsichangeproperties ESB1DBK -o BrokerRegistry -n brokerTruststoreFile,brokerTruststorePass,brokerKeystoreFile,brokerKeystorePass,brokerKeystoreType,brokerKeystoreType -v "/opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts,brokerTruststore::password,/opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts,brokerTruststore::password,JKS,JKS“
+
+3. Integration Node 에 등록한 Registry 확인
+
+에) mqsireportproperties <Integration Node명>  -o BrokerRegistry -r
+
+mqsireportproperties ESB1DBK -o BrokerRegistry -r
+
+- **인증서 관리 ( keytool 유틸리티로 인증서 추가,삭제,변경)**
+JDK로 제공 되는 keytool 유틸리티를 이용해 인증서 추가, 삭제, 변경을 한다.
+
+동일한 alias 명으로 인증서를 변경 하려면, 삭제 후 재 등록 한다.
+
+아시아나 항공 ESB는 대외계 롤스로이스(DACS), 에어버스(FHS), 루프트한자(TCS) 연결을 위해 인증서를 사용한다.
+
+0. CA인증서가 있는 디렉토리로 이동
+
+예 ) cd /opt/IBM/iib-10.0.0.13/common/jre/lib/security
+
+1.인증서 유무 확인
+
+예) keytool -list -v -keystore <CA저장소 파일명>  -alias <인증서alias 명 >   -storepass <패스워드> 
+
+keytool -list -v -keystore cacerts -alias tcs_dev  -storepass changeit
+
+èkeytool error: java.lang.Exception: Alias <tcs_dev> does not exist ( tcs_dev 명으로 등록된 인증서가 없는 경우 )
+
+èkeytool -list -v -keystore cacerts -alias tcs  -storepass changeit      ( tcs 명으로 등록된 인증서가 있는 경우 )
+
+  Alias name: tcs
+
+  Creation date: Dec 15, 2018
+
+  Entry type: trustedCertEntry
+
+  …..
+
+2. 인증서 등록
+
+예 ) keytool -importcert -keystore <CA저장소 파일명>  -trustcacerts -alias <인증서 alias 명>  -file <인증서파일명 >  -storepass <패스워드>
+
+keytool -importcert -keystore cacerts -trustcacerts -alias aex -file /esbapp/cert/AEX_PROD_PUB_05072018.cer  -storepass changeit
+
+3 인증서 삭제
+
+예) keytool -delete -keystore <CA인증서파일명> -alias <인증서 alias명>  -storepass <패스워드>
+
+keytool -delete -keystore /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts -alias aex  -storepass changeit
+
+- **인증서  Verify**
+인증서 등록 후, 연결 테스트를 위해 java클래스 작성 후, 운영/개발에 배포.
+
+디렉토리 이동 :
+
+cd /user/mqm/verify_https
+
+연결 테스트 :
+
+ java -cp . HttpsClient [https://aeroxchangeb2bserver.com:9003](https://aeroxchangeb2bserver.com:9003/)
+
+============ ==========결과 =========================
+
+Response Code : 401
+
+Cipher Suite : SSL_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+
+Cert Type : X.509
+
+Cert Hash Code : 27180433
+
+Cert Public Key Algorithm : RSA
+
+Cert Public Key Format : X.509
+
+============ ==========결과 =========================
+
+위와 같이 display 되면 정상적으로 인증서 등록 완료
+
+
+- 아시아나 ESB 운영#1 설정
+
+
+-- CA 저장소 등록
+
+mqsireportproperties ESB1PBK -o BrokerRegistry -r
+mqsisetdbparms ESB1PBK -n brokerTruststore::password -u ignore -p changeit
+mqsisetdbparms ESB1PBK -n brokerKeystore::password -u ignore -p changeit
+
+mqsichangeproperties ESB1PBK -o BrokerRegistry -n brokerTruststoreFile,brokerTruststorePass,brokerKeystoreFile,brokerKeystorePass,brokerKeystoreType,brokerKeystoreType -v /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts,brokerTruststore::password,/opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts,brokerTruststore::password,JKS,JKS"
+
+
+-- 인증서 backup
+
+cp /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts.20181217 
+
+-- 인증서 import
+
+-- 운영용 인증서는 /esbapp/install/cert 디렉토리에 보관
+
+-- 백업 :z:\2.시스템 구축\5.T(통합)\5.3 이행계획\이행관련파일\인증서
+
+keytool -importcert -keystore cacerts -trustcacerts -alias aex_verisignroot  -file /esbapp/cert/DigiCert_RootCA.cer    -storepass changeit
+
+keytool -importcert -keystore cacerts -trustcacerts -alias aex_sematic -file /esbapp/cert/DigiCert_IntermediateCA.cer  -storepass changeit    
+
+keytool -importcert -keystore cacerts -trustcacerts -alias aex -file /esbapp/cert/AEX_PROD_PUB_05072018.cer  -storepass changeit
+
+keytool -importcert -keystore cacerts -trustcacerts -alias dacs_trusted -file /esbapp/cert/production_dacs_trusted.cer  -storepass changeit
+
+keytool -importcert -keystore cacerts -trustcacerts -alias dacs_addtrust -file /esbapp/cert/production_dacs_addtrust.cer  -storepass changeit
+
+keytool -importcert -keystore cacerts -trustcacerts -alias dacs_usertrust -file /esbapp/cert/production_dacs_usertrust.cer  -storepass changeit
+
+keytool -importcert -keystore cacerts -trustcacerts -alias dacs -file /esbapp/cert/production_dacs.cer  -storepass changeit
+
+keytool -importcert -keystore cacerts -trustcacerts -alias tcs_dev -file /esbapp/cert/tcs_dev_prod.cer  -storepass changeit
+
+
+-- 인증서 확인
+
+keytool -list -v -keystore cacerts -alias tcs_dev  -storepass changeit
+keytool -list -v -keystore cacerts -alias aex  -storepass changeit
+keytool -list -v -keystore cacerts -alias dacs  -storepass changeit
+
+
+
+-- 인증서 delete
+
+keytool -delete -keystore /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts -alias aex  -storepass changeit
+
+keytool -delete -keystore /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts -alias aex_sematic  -storepass changeit
+
+keytool -delete -keystore /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts -alias aex_verisignroot  -storepass changeit
+
+keytool -delete -keystore /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts -alias dacs_trusted  -storepass changeit
+
+keytool -delete -keystore /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts -alias dacs_addtrust  -storepass changeit
+
+keytool -delete -keystore /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts -alias dacs_usertrust  -storepass changeit
+
+keytool -delete -keystore /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts -alias dacs  -storepass changeit
+
+keytool -delete -keystore /opt/IBM/iib-10.0.0.13/common/jre/lib/security/cacerts -alias tcs_dev  -storepass changeit
 

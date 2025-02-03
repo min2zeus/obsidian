@@ -1,0 +1,184 @@
+{
+  "main": {
+    "id": "c5de3616721ad41a",
+    "type": "split",
+    "children": [
+      {
+        "id": "b3ba5bb13ad299a3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1dddf39a6a9bc6c0",
+            "type": "leaf",
+            "state": {
+              "type": "mk-space",
+              "state": {
+                "path": "/"
+              }
+            }
+          },
+          {
+            "id": "a031e1a7ca2198e7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "MIN_Obsidian/IB_part/IB_part.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ad5ad49c4bcb0602",
+    "type": "split",
+    "children": [
+      {
+        "id": "7eebeb34e34c914b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e0b2cca55b6ba438",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a14f9cb8c5bc2342",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "cb0f77513dbae3d6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          },
+          {
+            "id": "45f33b605533d52f",
+            "type": "leaf",
+            "state": {
+              "type": "mk-path-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "11919bfc371c6ac6",
+    "type": "split",
+    "children": [
+      {
+        "id": "13d593ebc52e1d32",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2ee1479d8e5d92d7",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "MIN_Obsidian/IB_part/IB_part.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "1d8aff08db6da653",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "MIN_Obsidian/IB_part/IB_part.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "1fd4dda1d5e2fdab",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "bde29c9bdd4a14e6",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "MIN_Obsidian/IB_part/IB_part.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:퀵 스위처 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 데일리 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false
+    }
+  },
+  "active": "a031e1a7ca2198e7",
+  "lastOpenFiles": [
+    "Tags",
+    "무제 파일.canvas",
+    "2024-09-04.md",
+    "MIN_Obsidian/IB_part/MTE_memo.md",
+    "MIN_Obsidian/IB_part/MQ_memo.md",
+    "MIN_Obsidian/IB_part/MFT_memo.md",
+    "MIN_Obsidian/IB_part/IIB_memo.md",
+    "MIN_Obsidian/IB_part/IB_part.md",
+    "MIN_Obsidian/IB_part/ETC_memo(OS, vi, network).md",
+    "MIN_Obsidian/IB_part/DB_memo.md",
+    "MIN_Obsidian/API_Gateway/Overview.md",
+    "MIN_Obsidian/API_Gateway/API_Gateway.md"
+  ]
+}

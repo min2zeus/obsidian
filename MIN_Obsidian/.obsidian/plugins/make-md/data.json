@@ -51,7 +51,12 @@
       "IB파트",
       "IB파트",
       "IB파트",
-      "Kafka"
+      "IB_part",
+      "IB_part",
+      "Kafka",
+      "IB_part",
+      "IB_part",
+      "IB_part"
     ]
   },
   "expandedSpaces": [
@@ -89,7 +94,7 @@
   "spacesSyncTimeoutSeconds": 10,
   "spacesAutoBackup": true,
   "spacesAutoBackupInterval": 10,
-  "spacesAutoBackupLast": 1692163759759,
+  "spacesAutoBackupLast": 1726818907961,
   "spacesUseAlias": false,
   "precreateVaultSpace": true,
   "fmKeyAlias": "alias",

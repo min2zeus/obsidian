@@ -107,3 +107,10 @@ export FILENAME=file.txt
 쉘 파라미터 첫번째
 s.sh file.txt
 --replace "#SND_FILE#=$1"
+
+### MTE PowerPack 메시지 백업 차이
+모든내용 : ZIP 파일로 바로 복원 가능(MQMD 포함)
+
+아래 두개는 MQMD가 포함되지 않음
+Header+data : RFH2 + data 백업하며, .dat 파일로 만들어져서 생성기로 복원 필요
+data :  data 백업하며, .dat 파일로 만들어져서 생성기로 복원 필요

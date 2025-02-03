@@ -796,7 +796,7 @@ kernel.sem = 32 4096 32 128
 fs.file-max = 524288
 
 
-(V9.2)
+(V9.2  ~ V9.4 )
 kernel.shmmni = 4096
 kernel.shmall = 2097152
 kernel.shmmax = 268435456
@@ -889,6 +889,9 @@ setmqaut -m SFCAPP02 -t qmgr -p root +allmqi
 setmqaut -m SFCAPP02 -n SYSTEM.CLUSTER.TRANSMIT.QUEUE -t q -p root +put
 setmqaut -m SFCAPP02 -n MTE.EVQ -t q -p root +put
 setmqaut -m SFCAPP02 -n QASR.JM.1.CQ -t q -p root +get
+
+### 큐매니져 연관 설정 바꾸기
+setmqm -n Installation1 -m $QMGR
 
 ### 큐매니져 자동 재시작
 amqmdain auto QMGR
@@ -1085,3 +1088,239 @@ dis conn(*) where (objname eq SYSTEM.ADMIN.COMMAND.QUEUE)
 dis conn(*) where(pid  eq 53608604)
 
 
+### FDC 오류 (No space left on device)
+| Probe Description :- AMQ6119S: An internal IBM MQ error has occurred ('28 - |
+|   ENOSPC - No space left on device' from semget.)                           |
+| FDCSequenceNumber :- 0                                                      |
+| Arith1            :- 28 (0x1c)                                              |
+| Comment1          :- '28 - ENOSPC - No space left on device' from semget. 
+
+
+- 값 확인
+sysctl -a | grep sem
+
+- semmni 값 변경
+sysctl -w kernel.sem="250 32000 32 4096"
+
+### MQ V9.3 설치
+
+기존에 설치 할 때 처럼 rpm 명령 사용하여 설치 할 경우
+
+  1:MQSeriesRuntime-9.3.0-15         ################################# [  8%]  
+Warning : package "MQSeriesRuntime" is signed but key is not installed on this system.  
+          rpm verify shows "D:  read h#    1931 Header V4 RSA/SHA256 Signature, key ID 07b22880: NOKEY"  
+          rpm warning message may have been issued at install time.  
+          See topic "IBM MQ code signatures" in the IBM MQ documentation for more information.  
+  
+  
+이런 문구가 발생합니다.
+
+이 문제 해소를 위해선 pgp 파일을 등록(1회성)해야합니다.
+
+****무시하고 넘어가도 사용엔 문제가 없으나 고객사에서 문제제기를 할 경우 해소 방법이니 평소처럼 설치해도 서비스에는 영향 없습니다. 오히려 이 문제를 해소하기 위해선 설치 후에 아래 명령어(mqlicense accept 과정)이 추가됩니다.**
+
+  
+이를 IBM MQ 코드 공용 서명이라고 하는데, 엠파워 MQ v9.3 설치 파일 경로에 pgp 폴더가 있고, 이미 업로드 되어있는 파일들 중 한개를 받아서 테스트 진행해본 결과입니다.
+
+(설치 버전은 MQ v9.3.0.15 버전이지만, pgp파일은 9.3.0.10 파일을 받아 테스트 진행함)
+
+  
+"9.3.0.10-IBM-MQ-Sigs-Certs.tar.gz" 파일을 다운받아 압축 해제 후 풀리는 파일 중  
+"ibm_mq_public.pgp" 파일이 있는데  
+rpm 명령으로 먼저 등록
+
+**명령어 > rpm --import ibm_mq_public.pgp**
+
+후에 원래 평소 설치하던 방식으로 rpm -ivh rpm파일명 나열 하면 병렬 설치 가능한 환경이 됩니다.
+
+설치 프로세스를 거친 후엔  
+
+**명령어 > /opt/mqm/bin/mqlicense -accept**  
+를 root로 한번 해줘야 crtmqm 등의 명령어가 정상작동합니다. 해주지 않을 경우 
+
+[mqm@dong ~]$ crtmqm TEST  
+AMQ7171E: License agreement not accepted.
+
+이런식으로 에러 발생하며 명령어 동작 안합니다.
+
+**추가로 이 공용 서명은 하지 않아도 MQ 설치 및 운영에는 지장이 없는 "무해한 경고" 라고 합니다.**  
+(* 까다로운 고객사가 아닌 경우 위 과정을 생략해도 될 듯 합니다.)
+
+
+### TAB 파일 마이그레이션 테스트
+- 상황 
+고객사에서 서버의 MQ 업그레이드 계획중이에요. 그 서버의 큐 관리자에는 채널탭 파일을 이용해서 큐 관리자에 연결하고 있는데요. 
+현재는 8.0이랑 9.0 버전을 가지고 있어요. TOBE 버전은 9.3이구요.
+ASIS나 TOBE 모두 동일한 IP를 사용해서 채널탭 파일 그대로 사용해도 될 것 같은데, 버전이 올라가면서 채널탭 파일을 교체해줘야하는지 테스트 한번 해주세요.
+
+. /opt/mqm80/bin/setmqenv -s
+. /opt/mqm90/bin/setmqenv -s
+
+
+sysctl -w kernel.sem="250 32000 32 4096"
+
+- 8.0 구성 / 테스트
+runmqsc MQ80 
+DEFINE CHANNEL(ALPHA) CHLTYPE(SVRCONN) TRPTYPE(TCP) MCAUSER('mqm')
+DEFINE CHANNEL(ALPHA) CHLTYPE(CLNTCONN) TRPTYPE(TCP) CONNAME('10.10.1.173(5454)') QMNAME(MQ80) 
+DEFINE QLOCAL(Q1.LQ)
+
+
+export MQCHLLIB=/home/mqm/min/CCDT
+export MQCHLTAB=AMQCLCHL.TAB
+export MQCCSID=1208
+
+/opt/mqm80/samp/bin/amqsputc Q1.LQ MQ80
+
+- 9.0 구성 / 테스트
+runmqsc MQ90 
+DEFINE CHANNEL(BETA) CHLTYPE(SVRCONN) TRPTYPE(TCP) MCAUSER('mqm')
+DEFINE CHANNEL(BETA) CHLTYPE(CLNTCONN) TRPTYPE(TCP) CONNAME('10.10.1.173(5555)') QMNAME(MQ90) 
+DEFINE QLOCAL(Q2.LQ)
+
+
+export MQCHLLIB=/home/mqm/min/CCDT90
+export MQCHLTAB=AMQCLCHL.TAB
+export MQCCSID=1208
+
+/opt/mqm90/samp/bin/amqsputc Q2.LQ MQ90
+
+- 마이그레이션 진행
+
+. /opt/mqm93/bin/setmqenv -s
+
+/opt/mqm93/bin/setmqm -n Installation2 -m MQ80
+/opt/mqm93/bin/setmqm -n Installation6 -m MQ90
+
+OS 버전 문제로 9.3 환경에서 큐매니져 시작이 되지 않아
+9.3 환경에서 8/9 버전의 TAB 파일로 연결 테스트(정상 처리)
+
+
+### MQ9.2 Qmgr에 mqjava 9.3으로 사용 테스트
+. /opt/mqm920/bin/setmqenv -s
+. /opt/mqm930/bin/setmqenv -s
+
+
+/opt/mqm920/bin/mqlicense -accept
+/opt/mqm930/bin/mqlicense -accept
+
+crtmqm MQ92
+
+runmqsc MQ92
+
+alt qmgr ccsid(1208)
+alt qmgr deadq(DEAD.DQ)
+alt qmgr chlauth(DISABLED)
+alt CHANNEL(SYSTEM.DEF.SVRCONN)             CHLTYPE(SVRCONN) MCAUSER('mqm')
+alt CHANNEL(SYSTEM.DEF.SVRCONN)             CHLTYPE(SVRCONN) MCAUSER('MUSR_MQADMIN1')
+
+alter qmgr CHLAUTH(DISABLED)
+
+ALTER AUTHINFO(SYSTEM.DEFAULT.AUTHINFO.IDPWOS) AUTHTYPE(IDPWOS) CHCKLOCL(NONE) CHCKCLNT(NONE)
+REFRESH SECURITY TYPE(CONNAUTH)
+
+def ql(DEAD.DQ) MAXMSGL(104857600) MAXDEPTH(999999999) DEFPSIST(YES)
+
+alter qmgr MAXMSGL(104857600)
+def LISTENER(SYSTEM.DEFAULT.LISTENER.TCP)  TRPTYPE(TCP) CONTROL(QMGR)  PORT(7474) replace
+
+
+/opt/mqm920/samp/wmqjava/samples
+
+	
+export LD_LIBRARY_PATH=/opt/mqm920/java/lib64:/opt/mqm920/java/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/opt/mqm930/java/lib64:/opt/mqm930/java/lib:$LD_LIBRARY_PATH
+
+nohup /home/mqm/min/ivp93.sh > output.log 2>&1 &
+
+
+mqm@kbmq1:~/min:> cat ivp93.sh
+. /opt/mqm930/bin/setmqenv -s
+
+export LD_LIBRARY_PATH=/opt/mqm930/java/lib64:/opt/mqm930/java/lib:$LD_LIBRARY_PATH
+#export CLASSPATH=/opt/mqm930/java/lib/com.ibm.mq.jar:$CLASSPATH
+export CLASSPATH=/opt/mqm930/java/lib/com.ibm.mq.jar:/opt/mqm930/java/lib/com.ibm.mq.allclient.jar:/opt/mqm930/java/lib/com.ibm.mq.jmqi.jar:/opt/mqm930/java/lib/com.ibm.mq.headers.jar:$CLASSPATH
+cd /opt/mqm930/samp/wmqjava/samples
+#(echo localhost; echo 7474; echo SYSTEM.DEF.SVRCONN; echo mqm; echo ''; echo MQ92;) | java MQIVP
+
+
+for i in 1 2 3
+	do
+        (echo localhost; echo 7474; echo SYSTEM.DEF.SVRCONN; echo mqm; echo ''; echo MQ92;) | java MQIVP
+        sleep 1
+	done;
+mqm@kbmq1:~/min:> 
+
+### MQ 필터 키워드 사용(where)
+
+lk 로 찾기
+dis qs(SYSTEM*) type(handle) where(APPLTAG lk 'DataFlow*') all
+dis qs(SYSTEM*) type(handle) where(APPLDESC lk 'WebSphere*')
+eq 로 찾기
+dis qs(SYSTEM*) type(handle) where(APPLTAG eq 'DataFlowEngine') all
+dis qs(SYSTEM*) type(handle) where(APPLDESC eq 'WebSphere MQ Command Server')
+*  ' ' 사용해줘야 찾을 수 있음  
+
+
+
+구문 확인
+AMQ8427: Valid syntax for the MQSC command:
+  DISPLAY QSTATUS( q_name ) TYPE( QUEUE )
+
+     [ WHERE( filter_keyword operator filter_value ) ]
+
+     [ CURDEPTH ] [ IPPROCS  ] [ MEDIALOG ] [ LGETDATE ] [ LGETTIME ]
+     [ LPUTDATE ] [ LPUTTIME ] [ MONITOR  ] [ MONQ     ] [ MSGAGE   ]
+     [ OPPROCS  ] [ QTIME    ] [ UNCOM    ]
+
+
+  DISPLAY QSTATUS( q_name ) TYPE ( HANDLE )
+
+     [ WHERE( filter_keyword operator filter_value ) ]
+
+     [ OPENTYPE ( ALL | INPUT | OUTPUT ) ]
+     [ APPLDESC ] [ APPLTAG  ] [ APPLTYPE ] [ ASTATE   ] [ BROWSE   ]
+     [ CHANNEL  ] [ CONNAME  ] [ HSTATE   ] [ INPUT    ] [ INQUIRE  ]
+     [ OUTPUT   ] [ PID      ] [ QMURID   ] [ SET      ] [ TID      ]
+     [ URID     ] [ URTYPE   ] [ USERID   ]
+
+
+### AMQ9788W: 'host_QM3' 주소에 대한 DNS 검색이 느립니다. 에러 확인
+
+IP 해석할 때 dns 를 타지 않게 변경하면 해결이 되고,
+고객쪽에서 문의하면 저 에러 그대로의 상태라고 말하면 될 것 같습니다.
+
+이 때 telnet 으로 port 확인하면 connection refused 가 즉시 떨어지고
+MQ 로 확인하면 시간이 오래 걸립니다.
+
+OS dns 설정 수정해주면
+MQ 로 확인할 때도 에러가 즉시 발생합니다.
+
+
+root 계정으로 
+vi /etc/authselect/user-nsswitch.conf
+
+파일 수정해서 dns 안타게 변경하고,
+
+적용할 때는
+[root@24-ap1 ~]# authselect apply-changes  
+Changes were successfully applied.
+
+
+리눅스도 실제 파일은 /etc/nsswitch.conf 가 맞습니다.
+적용하기 위한 임시 파일 위치가 /etc/authselect/user-nsswitch.conf 입니다.
+
+
+### linux 다중 설치
+
+rpm --prefix /opt/mqm75test -ivh MQSeriesRuntime-7.5.0-0.x86_64.rpm
+rpm --prefix /opt/mqm75test -ivh MQSeriesServer-7.5.0-0.x86_64.rpm
+rpm --prefix /opt/mqm75test -ivh MQSeriesClient-7.5.0-0.x86_64.rpm
+rpm --prefix /opt/mqm75test -ivh MQSeriesMsg_ko-7.5.0-0.x86_64.rpm
+rpm --prefix /opt/mqm75test -ivh MQSeriesMsg_es-7.5.0-0.x86_64.rpm
+
+rpm --prefix /opt/mqm75test -ivh MQSeriesSDK-7.5.0-0.x86_64.rpm
+rpm --prefix /opt/mqm75test -ivh MQSeriesMan-7.5.0-0.x86_64.rpm
+rpm --prefix /opt/mqm75test -ivh MQSeriesSamples-7.5.0-0.x86_64.rpm
+rpm --prefix /opt/mqm75test -ivh MQSeriesJava-7.5.0-0.x86_64.rpm
+rpm --prefix /opt/mqm75test -ivh MQSeriesJRE-7.5.0-0.x86_64.rpm

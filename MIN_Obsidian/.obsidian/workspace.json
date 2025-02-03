@@ -4,28 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "4a3d0a717840aafe",
+        "id": "bc4ecac35b67b086",
         "type": "tabs",
         "children": [
           {
-            "id": "aac6b432ce288d3e",
+            "id": "e87867ab56726f20",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Kafka/Install.md",
+                "file": "IB_part/MQ_memo.md",
                 "mode": "source",
                 "source": false
-              }
-            }
-          },
-          {
-            "id": "9d41ef94b853841e",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.3.7"
               }
             }
           }
@@ -58,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "커널",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -84,7 +74,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -104,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Kafka/Install.md",
+                "file": "IB_part/MQ_memo.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Kafka/Install.md",
+                "file": "IB_part/MQ_memo.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -144,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Kafka/Install.md"
+                "file": "IB_part/MQ_memo.md"
               }
             }
           }
@@ -165,22 +155,32 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "aac6b432ce288d3e",
+  "active": "b894fb48e0b6542c",
   "lastOpenFiles": [
-    "Kafka/Install.md",
-    "IB_part/MQ_memo.md",
     "IB_part/ETC_memo(OS, vi, network).md",
+    "IB_part/IIB_memo.md",
+    "IB_part/MQ_memo.md",
+    "Kafka/Install.md",
+    "IB_part/DB_memo.md",
+    "IB_part/MTE_memo.md",
+    "Pasted image 20240920165506.png",
+    "무제 파일.md",
+    "IB_part/IB_part.md",
+    "ETC_TEST/frontmatter.md",
+    "API_Gateway/API_Gateway.md",
+    "무제 파일.canvas",
+    "Kafka/KafkaBookProducer1.java",
+    "Kafka/producer.py",
+    "Kafka/Pasted image 20230823180532.png",
     "Kafka/Kafka.md",
     "RESTful_API/RESTFUL Web  API.md",
     "Kafka",
-    "무제 파일.md",
     "API_Gateway/Overview.md",
     "RESTful_API/SF_683c69cb9db8fd2a132fef4ac81db9d1_00",
     "RESTful_API/stateless achitecture.md",
     "RESTful_API/Overview.md",
     "API_Gateway/무제 파일.md",
     "MongoDB/Overview.md",
-    "API_Gateway/API_Gateway.md",
     "API_Gateway",
     "RESTful_API/restapi.png",
     "MongoDB/MongoDB.md",
@@ -189,30 +189,20 @@
     "RESTful_API/http_상태코드.png",
     "ETC_TEST/markdown-cheat-sheet.md",
     "ETC_TEST/Test.md",
-    "ETC_TEST/frontmatter.md",
     "ETC_TEST/front.md",
     "Git/버전 관리.md",
     "RESTful_API/버전 관리 1.md",
     "RESTful_API/RESTful_API.md",
     "RESTful_API",
     "image/Pasted.md",
-    "Git/Pasted.md",
     "image/image_20230711133559.png",
     "Git/Pasted image 20230711133758.png",
     "Git/Pasted image 20230711133559.png",
     "Git/Pasted image 20230711165910.png",
     "Git/Pasted image 20230711135444.png",
-    "Git/001.jpg.md",
     "Git/Pasted image 20230711171515.png",
-    "Git/Pasted image 20230711170329.png",
-    "Git/Git.md",
-    "ETC_TEST/ETC_TEST.md",
     "ETC_TEST",
-    "Git/Pasted image 20230711171329.png",
     "Git",
-    "IB_part",
-    "Context/MIN_Obsidian.mdb",
-    "Context/spacesLastSync.log",
-    "무제 파일.canvas"
+    "IB_part"
   ]
 }
